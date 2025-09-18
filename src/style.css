@@ -1,0 +1,164 @@
+ *,
+ *:before,
+ *:after {
+     box-sizing: border-box;
+ }
+
+ * {
+     margin: 0;
+     padding: 0;
+ }
+
+ html {
+     font-family: "Roboto", sans-serif;
+     font-size: 62.5%
+ }
+
+ /* dialog */
+
+ .dialog-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100vw;
+     height: 100vh;
+     position: fixed;
+     background-color: rgba(0, 0, 0, 0.5)
+ }
+
+ .dialog-add-task {
+     display: flex;
+     flex-direction: column;
+     padding: 1%;
+     gap: 0.8rem;
+     position: relative;
+ }
+
+ .dialog-add-close-container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .dialog-date-container {
+     display: flex;
+     align-items: center;
+     gap: 0.8rem;
+ }
+
+ .dialog-priority-container {
+     padding: 1%;
+     display: flex;
+     align-items: center;
+     gap: 0.8rem;
+ }
+
+ .dialog-priority,
+ .dialog-checkbox-container {
+     display: flex;
+     align-items: center;
+     gap: 0.4rem;
+ }
+
+
+ /* dialog */
+
+ .top-bar {
+     display: flex;
+     height: 10vh;
+     align-items: center;
+     padding-left: 1%;
+     background-color: #ffffff;
+     color: #022b3a;
+     font-size: 3.6rem;
+     border-bottom: 1px solid #022b3a;
+ }
+
+ .container {
+     display: flex;
+ }
+
+ .side-bar {
+     display: flex;
+     flex-direction: column;
+     gap: 3.2rem;
+     background-color: #ffffff;
+     border-right: 1px solid #022b3a;
+     padding: 2% 2% 0 2%;
+     width: 15vw;
+     height: 90vh;
+     font-size: 2.8rem;
+ }
+
+ .side-bar-title {
+     border-bottom: 1px solid #022b3a;
+     margin-bottom: 1.6rem;
+ }
+
+ .side-bar-list {
+     display: flex;
+     flex-direction: column;
+     gap: 0.8rem;
+     list-style-type: none;
+     font-size: 2.4rem;
+ }
+
+ .main-content {
+     display: flex;
+     flex-direction: column;
+     background-color: #e1e5f2;
+     width: 85vw;
+     height: 90vh;
+ }
+
+ .main-content-top-section {
+     display: flex;
+     flex-direction: column;
+     gap: 0.8rem;
+     width: 100%;
+     font-size: 2.4rem;
+     padding: 3% 0 0 3%;
+
+ }
+
+ .project-name {
+     font-size: 3.2rem;
+ }
+
+ .main-content-bottom-section {
+     display: grid;
+     flex-grow: 1;
+     grid-template-columns: 1fr 1fr 1fr;
+     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+     padding: 2% 3% 3% 3%;
+     gap: 4rem;
+     overflow-y: auto;
+ }
+
+ .task-card {
+     background-color: #bfdbf7;
+     border-radius: 1.2rem;
+     height: 12rem;
+     padding: 4% 4% 4% 4%;
+     display: flex;
+     flex-direction: column;
+     gap: 0.4rem;
+     font-size: 1.6rem;
+ }
+
+ .task-card input[type="checkbox"] {
+     margin-right: 0.8rem;
+ }
+
+ .task-name-container {
+     display: flex;
+ }
+
+ .task-date {
+     font-weight: bold;
+ }
+
+ .buttons {
+     display: flex;
+     gap: 0.8rem;
+ }

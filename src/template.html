@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="dialog-container">
+        <dialog class="dialog-add-task">
+            <div class="dialog-add-close-container">
+                <p>Add a Task</p>
+                <button class="dialog-close-button">Close</button>
+            </div>
+            <input id="dialog-add-task-name" placeholder="Title" required="">
+            <input id="dialog-add-task-description" placeholder="Description" required="">
+            <div class="dialog-date-container">
+                <label for="dialog-task-date">Due Date</label>
+                <input type="date" name="" id="dialog-task-date" required="">
+            </div>
+            <fieldset class="dialog-priority-container">
+                <legend>Task Priority</legend>
+                <div class="dialog-priority">
+                    <input type="radio" name="priority" value="low" id="dialog-low" required="">
+                    <label for="dialog-low">Low</label>
+                </div>
+                <div class="dialog-priority">
+                    <input type="radio" name="priority" value="high" id="dialog-high" required="">
+                    <label for="dialog-high">High</label>
+                </div>
+            </fieldset>
+            <div class="dialog-checkbox-container">
+                <label for="dialog-task-checkbox">Task Completed ?</label>
+                <input type="checkbox" name="" id="dialog-task-checkbox">
+            </div>
+            <button class="dialog-add-task-button">Add</button>
+        </dialog>
+    </div>
+    <div class="top-bar">
+        <p>To Do List</p>
+    </div>
+    <div class="container">
+        <div class="side-bar">
+            <div class="side-bar-section1">
+                <p class="side-bar-title">Filter</p>
+                <div class="list-container">
+                    <ul class="side-bar-list">
+                        <li>All</li>
+                        <li>Today</li>
+                        <li>This Week</li>
+                        <li>Important</li>
+                        <li>Completed</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="side-bar-section2">
+                <p class="side-bar-title">Projects</p>
+                <div class="list-container">
+                    <ul class="side-bar-list side-bar-project-list">
+                        <!-- <li>Project 1</li>
+                        <li>Project 2</li>
+                        <li>Project 3</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="main-content-top-section">
+                <p class="project-name">Default Project</p>
+                <p class="add-task-button">Add Task</p>
+            </div>
+            <div class="main-content-bottom-section">
+                <!-- <div class="task-card">
+                    <div class="task-name container">
+                        <input type="checkbox" checked />
+                        <div class="task-name">Finish Report</div>
+                    </div>
+                    <div class="task-description">Complete the monthly sales report by EOD.</div>
+                    <div class="task-date">Wednesday 24th July 2024</div>
+                    <div class="buttons">
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
