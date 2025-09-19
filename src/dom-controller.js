@@ -1,4 +1,6 @@
 import { format } from "date-fns";
+import Events from './events.js'
+
 export default class DOMController {
 
     static renderProjectList(projectList) {
@@ -6,12 +8,14 @@ export default class DOMController {
         for (let key in projectList) {
             const getProjectName = key;
             const projectElement = document.createElement('li')
+            projectElement.addEventListener('click', () => Events.handleProjectClick(getProjectName));
             projectElement.textContent = getProjectName;
             sideBarListElement.appendChild(projectElement);
         }
     };
     static renderTasks(project, filter) {
         if (filter === 'all') {
+            console.log(project);
             this.renderAllTasks(project);
         }
     };

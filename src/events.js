@@ -86,4 +86,13 @@ export default class Events {
         DOMController.renderTasks(currentProject, currentFilter);
         this.closeProjectDialog();
     };
+
+    static handleProjectClick(clickedProject) {
+        Tracker.updateCurrentProject(clickedProject)
+        let currentProject = Tracker.getCurrentProject();
+        currentProject = Projects.projectsList[currentProject];
+        const currentFilter = Tracker.getCurrentFilter();
+        DOMController.unrenderTasks();
+        DOMController.renderTasks(currentProject, currentFilter);
+    };
 };
