@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import Events from './events.js'
+import Tracker from './tracker.js';
 
 export default class DOMController {
 
@@ -14,6 +15,7 @@ export default class DOMController {
         }
     };
     static renderTasks(project, filter) {
+        this.updateProjectName();
         if (filter === 'all') {
             console.log(project);
             this.renderAllTasks(project);
@@ -21,12 +23,12 @@ export default class DOMController {
     };
 
     static renderAllTasks(project) {
-        project.forEach(e => {
-            this.createTaskCard(e.taskName, e.taskDescription, e.date, e.priority, e.completed);
+        project.forEach((e, i) => {
+            this.createTaskCard(e.taskName, e.taskDescription, e.date, e.priority, e.completed, i);
         });
     };
 
-    static createTaskCard(taskName, taskDescription, date, priority, completed) {
+    static createTaskCard(taskName, taskDescription, date, priority, completed, index) {
         date = format(new Date(date), "iiii do MMMM u");
         const cardContainer = document.querySelector('.main-content-bottom-section')
         const taskCardElement = document.createElement('div');
@@ -54,6 +56,8 @@ export default class DOMController {
         taskDateElement.textContent = date;
         editTaskButton.textContent = 'Edit';
         deleteTaskButton.textContent = 'Delete';
+        deleteTaskButton.addEventListener('click', () => Events.handleDeleteTask(index));
+
 
         checkBoxElement.type = 'checkbox';
         if (completed) {
@@ -72,6 +76,12 @@ export default class DOMController {
         taskButtonsContainerElement.appendChild(editTaskButton);
         taskButtonsContainerElement.appendChild(deleteTaskButton);
     };
+
+    static updateProjectName() {
+        const projectNameElement = document.querySelector('.project-name');
+        const projectName = Tracker.getCurrentProject();
+        projectNameElement.textContent = `${projectName} Project`;
+    }
 
     static unrenderTasks() {
         const tasksContainer = document.querySelector('.main-content-bottom-section');

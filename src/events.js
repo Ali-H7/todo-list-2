@@ -60,6 +60,15 @@ export default class Events {
         this.closeTaskDialog();
     };
 
+    static handleDeleteTask(index) {
+        let currentProject = Tracker.getCurrentProject();
+        currentProject = Projects.projectsList[currentProject];
+        const currentFilter = Tracker.getCurrentFilter();
+        currentProject.splice(index, 1)
+        DOMController.unrenderTasks();
+        DOMController.renderTasks(currentProject, currentFilter);
+    };
+
     // project methods 
     static closeProjectDialog() {
         const dialog = document.querySelector('.add-project-dialog-container');
