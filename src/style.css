@@ -16,8 +16,36 @@
 
  /* dialog */
 
- .dialog-container {
+ /* project */
+
+ .add-project-dialog-container {
+     display: none;
+     justify-content: center;
+     align-items: center;
+     width: 100vw;
+     height: 100vh;
+     position: fixed;
+     background-color: rgba(0, 0, 0, 0.5)
+ }
+
+ .dialog-project-container {
      display: flex;
+     flex-direction: column;
+     padding: 1%;
+     gap: 0.8rem;
+     position: relative;
+ }
+
+ .dialog-project-title-container {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ /* project */
+
+ .dialog-container {
+     display: none;
      justify-content: center;
      align-items: center;
      width: 100vw;
@@ -93,6 +121,17 @@
  .side-bar-title {
      border-bottom: 1px solid #022b3a;
      margin-bottom: 1.6rem;
+     padding-bottom: 0.8rem;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .add-project-button {
+     background-color: white;
+     border: none;
+     cursor: pointer;
+     margin-top: 0.8rem;
  }
 
  .side-bar-list {

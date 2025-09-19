@@ -12,26 +12,38 @@
 </head>
 
 <body>
+
+    <div class="add-project-dialog-container">
+        <dialog class="dialog-project-container">
+            <div class="dialog-project-title-container">
+                <p>New Project</p>
+                <button class="dialog-project-close-button">Close</button>
+            </div>
+            <input id="dialog-add-project-name" placeholder="Project Name" required>
+            <button class="dialog-add-project-button">Add</button>
+        </dialog>
+    </div>
+
     <div class="dialog-container">
         <dialog class="dialog-add-task">
             <div class="dialog-add-close-container">
                 <p>Add a Task</p>
                 <button class="dialog-close-button">Close</button>
             </div>
-            <input id="dialog-add-task-name" placeholder="Title" required="">
-            <input id="dialog-add-task-description" placeholder="Description" required="">
+            <input id="dialog-add-task-name" placeholder="Title" required>
+            <input id="dialog-add-task-description" placeholder="Description" required>
             <div class="dialog-date-container">
                 <label for="dialog-task-date">Due Date</label>
-                <input type="date" name="" id="dialog-task-date" required="">
+                <input type="date" name="" id="dialog-task-date" required>
             </div>
             <fieldset class="dialog-priority-container">
                 <legend>Task Priority</legend>
                 <div class="dialog-priority">
-                    <input type="radio" name="priority" value="low" id="dialog-low" required="">
+                    <input type="radio" name="priority" value="low" id="dialog-low" required>
                     <label for="dialog-low">Low</label>
                 </div>
                 <div class="dialog-priority">
-                    <input type="radio" name="priority" value="high" id="dialog-high" required="">
+                    <input type="radio" name="priority" value="high" id="dialog-high" required>
                     <label for="dialog-high">High</label>
                 </div>
             </fieldset>
@@ -60,7 +72,12 @@
                 </div>
             </div>
             <div class="side-bar-section2">
-                <p class="side-bar-title">Projects</p>
+                <div class="side-bar-title">
+                    <p>Projects</p>
+                    <button class="add-project-button">
+                        <img src="./icons/add.svg" alt="Add Project">
+                    </button>
+                </div>
                 <div class="list-container">
                     <ul class="side-bar-list side-bar-project-list">
                         <!-- <li>Project 1</li>

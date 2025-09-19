@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 export default class DOMController {
 
     static renderProjectList(projectList) {
@@ -22,6 +23,7 @@ export default class DOMController {
     };
 
     static createTaskCard(taskName, taskDescription, date, priority, completed) {
+        date = format(new Date(date), "iiii do MMMM u");
         const cardContainer = document.querySelector('.main-content-bottom-section')
         const taskCardElement = document.createElement('div');
         const taskNameContainerElement = document.createElement('div');
@@ -70,5 +72,24 @@ export default class DOMController {
     static unrenderTasks() {
         const tasksContainer = document.querySelector('.main-content-bottom-section');
         tasksContainer.replaceChildren();
+    };
+
+    static clearUserTaskInput() {
+        document.querySelector('#dialog-add-task-name').value = "";
+        document.querySelector('#dialog-add-task-description').value = "";
+        document.querySelector('#dialog-task-date').value = "";
+        const checkedPriority = document.querySelector('input[name="priority"]:checked');
+        if (checkedPriority) checkedPriority.checked = false;
+        document.querySelector('#dialog-task-checkbox').checked = false;
+    }
+
+    static unrenderProjects() {
+        const projectContainer = document.querySelector(".side-bar-project-list");
+        console.log(projectContainer);
+        projectContainer.replaceChildren();
+    };
+
+    static clearProjectInput() {
+        document.querySelector('#dialog-add-project-name').value = "";
     };
 };

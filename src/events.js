@@ -14,11 +14,22 @@ export default class Events {
 
         const DialogAddTaskButton = document.querySelector('.dialog-add-task-button');
         DialogAddTaskButton.addEventListener('click', () => this.addUserTask())
+
+        const DialogClosePorject = document.querySelector('.dialog-project-close-button');
+        DialogClosePorject.addEventListener('click', () => this.closeProjectDialog());
+
+        const addProjectButton = document.querySelector('.add-project-button');
+        addProjectButton.addEventListener('click', () => this.openProjectDialog());
+
+        const DialogAddProject = document.querySelector('.dialog-add-project-button');
+        DialogAddProject.addEventListener('click', () => this.addUserProject())
     };
 
+    // task methods
     static closeTaskDialog() {
         const dialog = document.querySelector('.dialog-container');
         dialog.style.display = 'none';
+        DOMController.clearUserTaskInput();
     };
 
     static openTaskDialog() {
@@ -27,11 +38,12 @@ export default class Events {
     };
 
     static getUserTaskInput() {
-        const userTaskName = document.querySelector('#dialog-add-task-name').value;
+        let userTaskName = document.querySelector('#dialog-add-task-name').value;
         const userTaskDescription = document.querySelector('#dialog-add-task-description').value;
         const userTaskDate = document.querySelector('#dialog-task-date').value;
         const userTaskPriority = document.querySelector('input[name="priority"]:checked').value;
         const userTaskStatus = document.querySelector('#dialog-task-checkbox').checked
+
         return { userTaskName, userTaskDescription, userTaskDate, userTaskPriority, userTaskStatus };
     };
 
@@ -44,5 +56,34 @@ export default class Events {
         newTask.addToProject(currentProject);
         DOMController.unrenderTasks();
         DOMController.renderTasks(currentProject, currentFilter);
+        DOMController.clearUserTaskInput()
+        this.closeTaskDialog();
+    };
+
+    // project methods 
+    static closeProjectDialog() {
+        const dialog = document.querySelector('.add-project-dialog-container');
+        dialog.style.display = 'none';
+        DOMController.clearProjectInput();
+    };
+
+    static openProjectDialog() {
+        const dialog = document.querySelector('.add-project-dialog-container');
+        dialog.style.display = 'flex';
+    };
+
+    static addUserProject() {
+        const userProjectNameInput = document.querySelector('#dialog-add-project-name').value;
+        Projects.addNewProject(userProjectNameInput);
+        Tracker.updateCurrentProject(userProjectNameInput);
+        let currentProject = Tracker.getCurrentProject();
+        currentProject = Projects.projectsList[currentProject];
+        const currentFilter = Tracker.getCurrentFilter();
+        DOMController.clearProjectInput();
+        DOMController.unrenderProjects();
+        DOMController.renderProjectList(Projects.projectsList);
+        DOMController.unrenderTasks();
+        DOMController.renderTasks(currentProject, currentFilter);
+        this.closeProjectDialog();
     };
 };
