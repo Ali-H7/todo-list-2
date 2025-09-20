@@ -8,10 +8,18 @@ export default class DOMController {
         const sideBarListElement = document.querySelector('.side-bar-project-list');
         for (let key in projectList) {
             const getProjectName = key;
+            const projectElementContainer = document.createElement('div');
+            projectElementContainer.classList.add('project-element-container')
             const projectElement = document.createElement('li')
             projectElement.addEventListener('click', () => Events.handleProjectClick(getProjectName));
             projectElement.textContent = getProjectName;
-            sideBarListElement.appendChild(projectElement);
+            const projectDeleteButton = document.createElement('button')
+            // work from here
+            projectDeleteButton.addEventListener('click', () => Events.handleProjectDelete(getProjectName));
+            projectDeleteButton.textContent = 'Delete';
+            sideBarListElement.appendChild(projectElementContainer);
+            projectElementContainer.appendChild(projectElement);
+            projectElementContainer.appendChild(projectDeleteButton);
         }
     };
     static renderTasks(project, filter) {
@@ -106,4 +114,13 @@ export default class DOMController {
     static clearProjectInput() {
         document.querySelector('#dialog-add-project-name').value = "";
     };
+
+    // static handleEmptyProjectList() {
+    //     const mainContentElemet = document.querySelector('.main-content');
+    //     mainContentElemet.replaceChildren();
+    //     const emptyProjectListMsg = document.createElement('div');
+    //     emptyProjectListMsg.classList.add('empty-project')
+    //     emptyProjectListMsg.textContent = ('The Project List is Empty, please add your own Project!');
+    //     mainContentElemet.appendChild(emptyProjectListMsg);
+    // };
 };

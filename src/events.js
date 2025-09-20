@@ -104,4 +104,22 @@ export default class Events {
         DOMController.unrenderTasks();
         DOMController.renderTasks(currentProject, currentFilter);
     };
+
+    static handleProjectDelete(projectName) {
+        if (Projects.checkIfProjectListEmpty()) {
+            alert('Please add New Project Before Attempting to Delete');
+            return;
+        } else {
+            Projects.removeProject(projectName);
+            const currentFilter = Tracker.getCurrentFilter();
+            const previousProject = Object.keys(Projects.projectsList)[Object.keys(Projects.projectsList).length - 1];
+            Tracker.updateCurrentProject(previousProject);
+            let currentProject = Tracker.getCurrentProject();
+            currentProject = Projects.projectsList[currentProject];
+            DOMController.unrenderProjects();
+            DOMController.renderProjectList(Projects.projectsList);
+            DOMController.unrenderTasks();
+            DOMController.renderTasks(currentProject, currentFilter);
+        };
+    };
 };
