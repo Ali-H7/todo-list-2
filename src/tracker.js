@@ -1,3 +1,5 @@
+import { isToday, isThisWeek } from "date-fns";
+
 export default class Tracker {
     static #currentFilter = 'all';
     static #currentProject = 'Default';
@@ -16,4 +18,18 @@ export default class Tracker {
     static getCurrentProject() {
         return this.#currentProject;
     }
+
+    static checkIfTaskIsToday(date) {
+        return isToday(date);
+    };
+    static checkIfTaskIsThisWeek(date) {
+        return isThisWeek(date);
+    };
+    static checkIfTaskIsImportant(priority) {
+        return priority === 'high';
+    };
+    static checkIfTaskIsCompleted(status) {
+        return status;
+    };
+
 };

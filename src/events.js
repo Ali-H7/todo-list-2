@@ -23,6 +23,31 @@ export default class Events {
 
         const DialogAddProject = document.querySelector('.dialog-add-project-button');
         DialogAddProject.addEventListener('click', () => this.addUserProject())
+
+        // filters
+
+        const allFilter = document.querySelector('.all-filter');
+        allFilter.addEventListener('click', () => this.handleFiltering('all'));
+
+        const todayFilter = document.querySelector('.today-filter');
+        todayFilter.addEventListener('click', () => this.handleFiltering('today'));
+
+        const weeklyFilter = document.querySelector('.weekly-filter');
+        weeklyFilter.addEventListener('click', () => this.handleFiltering('weekly'));
+
+        const importantFilter = document.querySelector('.important-filter')
+        importantFilter.addEventListener('click', () => this.handleFiltering('important'));
+
+        const completedFilter = document.querySelector('.completed-filter')
+        completedFilter.addEventListener('click', () => this.handleFiltering('completed'));
+    };
+
+    static handleFiltering(filter) {
+        let currentProject = Tracker.getCurrentProject();
+        currentProject = Projects.projectsList[currentProject];
+        Tracker.updateCurrentFilter(filter);
+        DOMController.unrenderTasks();
+        DOMController.renderTasks(currentProject, filter);
     };
 
     // task methods

@@ -27,11 +27,47 @@ export default class DOMController {
         if (filter === 'all') {
             console.log(project);
             this.renderAllTasks(project);
-        }
+        } else if (filter === 'today') {
+            this.renderTodayTasks(project);
+        } else if (filter === 'weekly') {
+            this.renderThisWeekTasks(project);
+        } else if (filter === 'important') {
+            this.renderImportantTasks(project);
+        } else if (filter === 'completed') {
+            this.renderCompletedTasks(project);
+        };
     };
 
     static renderAllTasks(project) {
         project.forEach((e, i) => {
+            this.createTaskCard(e.taskName, e.taskDescription, e.date, e.priority, e.completed, i);
+        });
+    };
+
+    static renderTodayTasks(project) {
+        const filteredTasks = project.filter((task) => Tracker.checkIfTaskIsToday(task.date));
+        filteredTasks.forEach((e, i) => {
+            this.createTaskCard(e.taskName, e.taskDescription, e.date, e.priority, e.completed, i);
+        });
+    };
+
+    static renderThisWeekTasks(project) {
+        const filteredTasks = project.filter((task) => Tracker.checkIfTaskIsThisWeek(task.date));
+        filteredTasks.forEach((e, i) => {
+            this.createTaskCard(e.taskName, e.taskDescription, e.date, e.priority, e.completed, i);
+        });
+    };
+
+    static renderImportantTasks(project) {
+        const filteredTasks = project.filter((task) => Tracker.checkIfTaskIsImportant(task.priority));
+        filteredTasks.forEach((e, i) => {
+            this.createTaskCard(e.taskName, e.taskDescription, e.date, e.priority, e.completed, i);
+        });
+    };
+
+    static renderCompletedTasks(project) {
+        const filteredTasks = project.filter((task) => Tracker.checkIfTaskIsCompleted(task.completed));
+        filteredTasks.forEach((e, i) => {
             this.createTaskCard(e.taskName, e.taskDescription, e.date, e.priority, e.completed, i);
         });
     };
