@@ -10,4 +10,12 @@ export default class Task {
     addToProject(project) {
         project.push(this);
     };
+
+    updateTask(taskName, taskDescription, date, priority, completed) {
+        this.taskName = taskName;
+        this.taskDescription = taskDescription;
+        this.date = date;
+        this.priority = priority;
+        this.completed = completed;
+    }
 }; 

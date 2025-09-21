@@ -3,6 +3,8 @@ import { isToday, isThisWeek } from "date-fns";
 export default class Tracker {
     static #currentFilter = 'all';
     static #currentProject = 'Default';
+    static #currentlyEditingTask;
+
     static updateCurrentFilter(filter) {
         this.#currentFilter = filter;
     }
@@ -19,6 +21,14 @@ export default class Tracker {
         return this.#currentProject;
     }
 
+    static selectEditingTask(task) {
+        this.#currentlyEditingTask = task;
+    };
+
+    static getCurrentlyEditingTask() {
+        return this.#currentlyEditingTask;
+    }
+
     static checkIfTaskIsToday(date) {
         return isToday(date);
     };
@@ -31,5 +41,4 @@ export default class Tracker {
     static checkIfTaskIsCompleted(status) {
         return status;
     };
-
 };

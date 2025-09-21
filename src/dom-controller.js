@@ -99,6 +99,7 @@ export default class DOMController {
         taskDateElement.textContent = date;
         editTaskButton.textContent = 'Edit';
         deleteTaskButton.textContent = 'Delete';
+        editTaskButton.addEventListener('click', () => Events.openEditTask(index));
         deleteTaskButton.addEventListener('click', () => Events.handleDeleteTask(index));
 
 
@@ -131,6 +132,14 @@ export default class DOMController {
         tasksContainer.replaceChildren();
     };
 
+    static populateEditTaskInput(task) {
+        document.querySelector('#dialog-add-task-name').value = task.taskName;
+        document.querySelector('#dialog-add-task-description').value = task.taskDescription;
+        document.querySelector('#dialog-task-date').value = task.date;
+        document.querySelector(`input[name="priority"][value=${task.priority}]`).checked = true;
+        if (task.completed) document.querySelector('#dialog-task-checkbox').checked = true;
+    }
+
     static clearUserTaskInput() {
         document.querySelector('#dialog-add-task-name').value = "";
         document.querySelector('#dialog-add-task-description').value = "";
@@ -149,12 +158,4 @@ export default class DOMController {
         document.querySelector('#dialog-add-project-name').value = "";
     };
 
-    // static handleEmptyProjectList() {
-    //     const mainContentElemet = document.querySelector('.main-content');
-    //     mainContentElemet.replaceChildren();
-    //     const emptyProjectListMsg = document.createElement('div');
-    //     emptyProjectListMsg.classList.add('empty-project')
-    //     emptyProjectListMsg.textContent = ('The Project List is Empty, please add your own Project!');
-    //     mainContentElemet.appendChild(emptyProjectListMsg);
-    // };
 };

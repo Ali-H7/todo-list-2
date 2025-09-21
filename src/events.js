@@ -12,8 +12,11 @@ export default class Events {
         const addTaskButton = document.querySelector('.add-task-button');
         addTaskButton.addEventListener('click', () => this.openTaskDialog())
 
-        const DialogAddTaskButton = document.querySelector('.dialog-add-task-button');
-        DialogAddTaskButton.addEventListener('click', () => this.addUserTask())
+        const dialogAddTaskButton = document.querySelector('.dialog-add-task-button');
+        dialogAddTaskButton.addEventListener('click', () => this.addUserTask())
+
+        const dialogEditTaskButton = document.querySelector('.dialog-edit-task-button');
+        dialogEditTaskButton.addEventListener('click', () => this.handleEditTask())
 
         const DialogClosePorject = document.querySelector('.dialog-project-close-button');
         DialogClosePorject.addEventListener('click', () => this.closeProjectDialog());
@@ -59,6 +62,19 @@ export default class Events {
 
     static openTaskDialog() {
         const dialog = document.querySelector('.dialog-container');
+        const dialogEditButton = document.querySelector('.dialog-edit-task-button')
+        const dialogAddButton = document.querySelector('.dialog-add-task-button')
+        dialogEditButton.style.display = 'none';
+        dialogAddButton.style.display = 'inline-block';
+        dialog.style.display = 'flex';
+    };
+
+    static editTaskDialog() {
+        const dialog = document.querySelector('.dialog-container');
+        const dialogEditButton = document.querySelector('.dialog-edit-task-button')
+        const dialogAddButton = document.querySelector('.dialog-add-task-button')
+        dialogEditButton.style.display = 'inline-block';
+        dialogAddButton.style.display = 'none';
         dialog.style.display = 'flex';
     };
 
@@ -82,6 +98,27 @@ export default class Events {
         DOMController.unrenderTasks();
         DOMController.renderTasks(currentProject, currentFilter);
         DOMController.clearUserTaskInput()
+        this.closeTaskDialog();
+    };
+
+    static openEditTask(index) {
+        this.editTaskDialog();
+        let currentProject = Tracker.getCurrentProject();
+        currentProject = Projects.projectsList[currentProject];
+        const editedTask = currentProject[index];
+        DOMController.populateEditTaskInput(editedTask);
+        Tracker.selectEditingTask(editedTask);
+    }
+
+    static handleEditTask() {
+        const task = Tracker.getCurrentlyEditingTask()
+        const userInput = this.getUserTaskInput();
+        task.updateTask(userInput.userTaskName, userInput.userTaskDescription, userInput.userTaskDate, userInput.userTaskPriority, userInput.userTaskStatus);
+        let currentProject = Tracker.getCurrentProject();
+        currentProject = Projects.projectsList[currentProject];
+        const currentFilter = Tracker.getCurrentFilter();
+        DOMController.unrenderTasks();
+        DOMController.renderTasks(currentProject, currentFilter);
         this.closeTaskDialog();
     };
 
