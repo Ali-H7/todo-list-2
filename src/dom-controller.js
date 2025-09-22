@@ -10,8 +10,13 @@ export default class DOMController {
         const currentFilter = Tracker.getCurrentFilter();
         for (const filter of filterList.children) {
             filter.classList.remove("selected")
+            filter.classList.remove("to-be-selected")
             const filterDataAttribute = filter.dataset.filter;
-            if (currentFilter === filterDataAttribute) filter.classList.add("selected");
+            if (currentFilter === filterDataAttribute) {
+                filter.classList.add("selected");
+            } else {
+                filter.classList.add("to-be-selected");
+            }
         };
     };
 
@@ -20,8 +25,13 @@ export default class DOMController {
         const currentProject = Tracker.getCurrentProject();
         for (const project of projectList.children) {
             project.classList.remove("selected")
+            project.classList.remove("to-be-selected")
             const projectDataAttribute = project.dataset.project;
-            if (currentProject === projectDataAttribute) project.classList.add("selected");
+            if (currentProject === projectDataAttribute) {
+                project.classList.add("selected");
+            } else {
+                project.classList.add("to-be-selected");
+            }
         };
     }
 

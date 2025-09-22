@@ -28,18 +28,52 @@
      background-color: rgba(0, 0, 0, 0.5)
  }
 
- .dialog-project-container {
+ .dialog-project-container,
+ .dialog-add-task {
      display: flex;
      flex-direction: column;
      padding: 1%;
      gap: 0.8rem;
      position: relative;
+     border: none;
+     border-radius: 0.8rem;
+     font-size: 1.6rem;
  }
 
  .dialog-project-title-container {
      display: flex;
      align-items: center;
      justify-content: space-between;
+ }
+
+ #dialog-add-project-name,
+ #dialog-add-task-name,
+ #dialog-add-task-description {
+     height: 3.2rem;
+     outline: none;
+     border: none;
+     font-size: 1.6rem;
+     padding-left: 0.8rem;
+     border-radius: 0.8rem;
+     background-color: #f1f2ed;
+     color: #000;
+ }
+
+ .dialog-add-project-button,
+ .dialog-add-task-button {
+     height: 3.2rem;
+     background-color: #e5f778;
+     border: none;
+     border-radius: 0.8rem;
+     width: 50%;
+     align-self: center;
+     font-size: 1.4rem;
+ }
+
+ .dialog-add-project-button:hover,
+ .dialog-add-task-button:hover {
+     scale: 110%;
+     cursor: pointer;
  }
 
  /* project */
@@ -75,7 +109,7 @@
  }
 
  .dialog-priority-container {
-     padding: 1%;
+     padding: 0.6rem;
      display: flex;
      align-items: center;
      gap: 0.8rem;
@@ -97,9 +131,13 @@
      align-items: center;
      padding-left: 1%;
      background-color: #ffffff;
-     color: #022b3a;
+     color: #000000;
      font-size: 3.6rem;
-     border-bottom: 1px solid #022b3a;
+     border-bottom: 1px solid #000000;
+ }
+
+ .logo {
+     user-select: none;
  }
 
  .container {
@@ -111,7 +149,7 @@
      flex-direction: column;
      gap: 3.2rem;
      background-color: #ffffff;
-     border-right: 1px solid #022b3a;
+     border-right: 1px solid #000000;
      padding: 2% 2% 0 2%;
      width: 15vw;
      height: 90vh;
@@ -119,12 +157,13 @@
  }
 
  .side-bar-title {
-     border-bottom: 1px solid #022b3a;
+     border-bottom: 1px solid #000000;
      margin-bottom: 1.6rem;
      padding-bottom: 0.8rem;
      display: flex;
      justify-content: space-between;
      align-items: center;
+     user-select: none;
  }
 
  .add-project-button {
@@ -143,10 +182,18 @@
  }
 
  .selected {
-     background-color: #022b3a;
+     background-color: #e5f778;
      padding: 0.8rem;
-     color: #ffffff;
      border-radius: 0.8rem;
+     user-select: none;
+ }
+
+ .to-be-selected:hover {
+     background-color: #f1f2ed;
+     cursor: pointer;
+     padding: 0.8rem;
+     border-radius: 0.8rem;
+     user-select: none;
  }
 
  .project-element-container {
@@ -159,7 +206,7 @@
  .main-content {
      display: flex;
      flex-direction: column;
-     background-color: #e1e5f2;
+     background-color: #f1f2ed;
      width: 85vw;
      height: 90vh;
  }
@@ -198,7 +245,7 @@
  }
 
  .task-card {
-     background-color: #bfdbf7;
+     background-color: #e5f778;
      border-radius: 1.2rem;
      height: 12rem;
      padding: 4% 4% 4% 4%;
@@ -216,8 +263,23 @@
      display: flex;
  }
 
+ .task-name {
+     font-weight: bold;
+ }
+
  .task-date {
      font-weight: bold;
+ }
+
+ .task-edit-icon:hover,
+ .task-delete-icon,
+ .project-delete-icon,
+ .add-task-button,
+ .dialog-project-close-button,
+ .dialog-close-button {
+     cursor: pointer;
+     width: fit-content;
+
  }
 
  .buttons {

@@ -25,7 +25,6 @@ export default class storage {
             Projects.assignProjectList(projectList);
             Tracker.updateCurrentFilter(currentFilter);
             Tracker.updateCurrentProject(currentProject);
-            console.log('working!');
         } else {
             Projects.addNewProject("Default");
             let currentProject = Tracker.getCurrentProject();
