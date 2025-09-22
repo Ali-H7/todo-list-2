@@ -8,27 +8,21 @@ export default class Tracker {
     static updateCurrentFilter(filter) {
         this.#currentFilter = filter;
     }
-
-    static updateCurrentProject(project) {
-        this.#currentProject = project;
-    }
-
     static getCurrentFilter() {
         return this.#currentFilter;
     }
-
+    static updateCurrentProject(project) {
+        this.#currentProject = project;
+    }
     static getCurrentProject() {
         return this.#currentProject;
     }
-
     static selectEditingTask(task) {
         this.#currentlyEditingTask = task;
     };
-
     static getCurrentlyEditingTask() {
         return this.#currentlyEditingTask;
     }
-
     static checkIfTaskIsToday(date) {
         return isToday(date);
     };

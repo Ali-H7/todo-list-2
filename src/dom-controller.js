@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import Events from './events.js'
 import Tracker from './tracker.js';
+import icons from './icons.js';
 
 export default class DOMController {
 
@@ -14,12 +15,15 @@ export default class DOMController {
             projectElement.addEventListener('click', () => Events.handleProjectClick(getProjectName));
             projectElement.textContent = getProjectName;
             const projectDeleteButton = document.createElement('button')
-            // work from here
             projectDeleteButton.addEventListener('click', () => Events.handleProjectDelete(getProjectName));
-            projectDeleteButton.textContent = 'Delete';
+            projectDeleteButton.classList.add('button-none')
+            const deleteIcon = new Image();
+            deleteIcon.src = icons.deleteIcon;
+            projectDeleteButton.classList.add('project-delete-icon');
             sideBarListElement.appendChild(projectElementContainer);
             projectElementContainer.appendChild(projectElement);
             projectElementContainer.appendChild(projectDeleteButton);
+            projectDeleteButton.appendChild(deleteIcon);
         }
     };
     static renderTasks(project, filter) {
@@ -97,11 +101,20 @@ export default class DOMController {
         taskNameElement.textContent = taskName;
         taskDescriptionElement.textContent = taskDescription;
         taskDateElement.textContent = date;
-        editTaskButton.textContent = 'Edit';
-        deleteTaskButton.textContent = 'Delete';
+        editTaskButton.classList.add('button-none')
+        deleteTaskButton.classList.add('button-none')
         editTaskButton.addEventListener('click', () => Events.openEditTask(index));
         deleteTaskButton.addEventListener('click', () => Events.handleDeleteTask(index));
+        // checkBoxElement.addEventListener('change', () => Events.handleTaskCheckbox(index));
 
+
+        const editIcon = new Image();
+        editIcon.src = icons.editIcon;
+        editTaskButton.classList.add('task-edit-icon');
+
+        const deleteIcon = new Image();
+        deleteIcon.src = icons.deleteIcon;
+        deleteTaskButton.classList.add('task-delete-icon');
 
         checkBoxElement.type = 'checkbox';
         if (completed) {
@@ -119,6 +132,8 @@ export default class DOMController {
         taskNameContainerElement.appendChild(taskNameElement);
         taskButtonsContainerElement.appendChild(editTaskButton);
         taskButtonsContainerElement.appendChild(deleteTaskButton);
+        editTaskButton.appendChild(editIcon);
+        deleteTaskButton.appendChild(deleteIcon);
     };
 
     static updateProjectName() {

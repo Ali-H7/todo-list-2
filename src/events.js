@@ -131,6 +131,8 @@ export default class Events {
         DOMController.renderTasks(currentProject, currentFilter);
     };
 
+    // static handleTaskCheckbox(index) {};
+
     // project methods 
     static closeProjectDialog() {
         const dialog = document.querySelector('.add-project-dialog-container');
