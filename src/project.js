@@ -9,7 +9,11 @@ export default class Projects {
         delete this.projectsList[projectName];
     }
 
-    static checkIfProjectListEmpty() {
-        return Object.keys(this.projectsList).length === 1;
-    };
+    static getProjectList() {
+        return this.projectsList;
+    }
+
+    static assignProjectList(projectList) {
+        this.projectsList = projectList;
+    }
 };

@@ -4,6 +4,7 @@ export default class Tracker {
     static #currentFilter = 'all';
     static #currentProject = 'Default';
     static #currentlyEditingTask;
+    static #isUserVisitedBefore = false;
 
     static updateCurrentFilter(filter) {
         this.#currentFilter = filter;
@@ -35,4 +36,13 @@ export default class Tracker {
     static checkIfTaskIsCompleted(status) {
         return status;
     };
+
+    static checkIfUserVisitedBefore() {
+        return this.#isUserVisitedBefore;
+    };
+
+    static markUserVisited() {
+        if (!this.#isUserVisitedBefore) this.isUserVisitedBefore = true;
+    };
+
 };

@@ -2,6 +2,7 @@ import Projects from './project.js'
 import Task from './task.js'
 import Tracker from './tracker.js'
 import DOMController from './dom-controller.js'
+import storage from './storage.js'
 
 export default class Events {
 
@@ -100,6 +101,7 @@ export default class Events {
         DOMController.renderTasks(currentProject, currentFilter);
         DOMController.clearUserTaskInput()
         this.closeTaskDialog();
+        storage.store();
     };
 
     static openEditTask(index) {
@@ -121,6 +123,7 @@ export default class Events {
         DOMController.unrenderTasks();
         DOMController.renderTasks(currentProject, currentFilter);
         this.closeTaskDialog();
+        storage.store();
     };
 
     static handleDeleteTask(index) {
@@ -130,12 +133,14 @@ export default class Events {
         currentProject.splice(index, 1)
         DOMController.unrenderTasks();
         DOMController.renderTasks(currentProject, currentFilter);
+        storage.store();
     };
 
     static handleTaskCheckbox(index) {
         let currentProject = Tracker.getCurrentProject();
         currentProject = Projects.projectsList[currentProject];
         currentProject[index].completed = !currentProject[index].completed;
+        storage.store();
     };
 
     // project methods 
@@ -164,6 +169,7 @@ export default class Events {
         DOMController.unrenderTasks();
         DOMController.renderTasks(currentProject, currentFilter);
         this.closeProjectDialog();
+        storage.store();
     };
 
     static handleProjectClick(clickedProject) {
@@ -192,6 +198,7 @@ export default class Events {
             DOMController.highlightCurrentProject();
             DOMController.unrenderTasks();
             DOMController.renderTasks(currentProject, currentFilter);
+            storage.store();
         };
     };
 };
