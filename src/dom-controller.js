@@ -105,7 +105,7 @@ export default class DOMController {
         deleteTaskButton.classList.add('button-none')
         editTaskButton.addEventListener('click', () => Events.openEditTask(index));
         deleteTaskButton.addEventListener('click', () => Events.handleDeleteTask(index));
-        // checkBoxElement.addEventListener('change', () => Events.handleTaskCheckbox(index));
+        checkBoxElement.addEventListener('change', () => Events.handleTaskCheckbox(index));
 
 
         const editIcon = new Image();

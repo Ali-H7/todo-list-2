@@ -131,7 +131,11 @@ export default class Events {
         DOMController.renderTasks(currentProject, currentFilter);
     };
 
-    // static handleTaskCheckbox(index) {};
+    static handleTaskCheckbox(index) {
+        let currentProject = Tracker.getCurrentProject();
+        currentProject = Projects.projectsList[currentProject];
+        currentProject[index].completed = !currentProject[index].completed;
+    };
 
     // project methods 
     static closeProjectDialog() {
