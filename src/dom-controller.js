@@ -5,15 +5,36 @@ import icons from './icons.js';
 
 export default class DOMController {
 
+    static highlightCurrentFilter() {
+        const filterList = document.querySelector('.side-bar-list');
+        const currentFilter = Tracker.getCurrentFilter();
+        for (const filter of filterList.children) {
+            filter.classList.remove("selected")
+            const filterDataAttribute = filter.dataset.filter;
+            if (currentFilter === filterDataAttribute) filter.classList.add("selected");
+        };
+    };
+
+    static highlightCurrentProject() {
+        const projectList = document.querySelector('.side-bar-project-list');
+        const currentProject = Tracker.getCurrentProject();
+        for (const project of projectList.children) {
+            project.classList.remove("selected")
+            const projectDataAttribute = project.dataset.project;
+            if (currentProject === projectDataAttribute) project.classList.add("selected");
+        };
+    }
+
     static renderProjectList(projectList) {
         const sideBarListElement = document.querySelector('.side-bar-project-list');
-        for (let key in projectList) {
-            const getProjectName = key;
+        for (let project in projectList) {
+            const getProjectName = project;
             const projectElementContainer = document.createElement('div');
             projectElementContainer.classList.add('project-element-container')
             const projectElement = document.createElement('li')
             projectElement.addEventListener('click', () => Events.handleProjectClick(getProjectName));
             projectElement.textContent = getProjectName;
+            projectElementContainer.dataset.project = getProjectName;
             const projectDeleteButton = document.createElement('button')
             projectDeleteButton.addEventListener('click', () => Events.handleProjectDelete(getProjectName));
             projectDeleteButton.classList.add('button-none')

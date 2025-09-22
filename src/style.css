@@ -142,10 +142,18 @@
      font-size: 2.4rem;
  }
 
+ .selected {
+     background-color: #022b3a;
+     padding: 0.8rem;
+     color: #ffffff;
+     border-radius: 0.8rem;
+ }
+
  .project-element-container {
      display: flex;
      gap: 0.8rem;
      align-items: center;
+     justify-content: space-between;
  }
 
  .main-content {

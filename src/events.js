@@ -51,6 +51,7 @@ export default class Events {
         Tracker.updateCurrentFilter(filter);
         DOMController.unrenderTasks();
         DOMController.renderTasks(currentProject, filter);
+        DOMController.highlightCurrentFilter();
     };
 
     // task methods
@@ -159,6 +160,7 @@ export default class Events {
         DOMController.clearProjectInput();
         DOMController.unrenderProjects();
         DOMController.renderProjectList(Projects.projectsList);
+        DOMController.highlightCurrentProject();
         DOMController.unrenderTasks();
         DOMController.renderTasks(currentProject, currentFilter);
         this.closeProjectDialog();
@@ -171,6 +173,7 @@ export default class Events {
         const currentFilter = Tracker.getCurrentFilter();
         DOMController.unrenderTasks();
         DOMController.renderTasks(currentProject, currentFilter);
+        DOMController.highlightCurrentProject();
     };
 
     static handleProjectDelete(projectName) {
@@ -186,6 +189,7 @@ export default class Events {
             currentProject = Projects.projectsList[currentProject];
             DOMController.unrenderProjects();
             DOMController.renderProjectList(Projects.projectsList);
+            DOMController.highlightCurrentProject();
             DOMController.unrenderTasks();
             DOMController.renderTasks(currentProject, currentFilter);
         };
